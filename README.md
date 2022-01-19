@@ -170,19 +170,22 @@ OPTIONAL: System/hardware requirements including operating system with version n
 Ubuntu 18.04.6 LTS
 
 
-### Additional information (optional)
+
 
 <!--
+### Additional information (optional)
 OPTIONAL: By default, submitted code will be published on the JASA GitHub repository (http://github.com/JASA-ACS) as well as in the supplementary material. Authors are encouraged to also make their code available in a public code repository, such as on GitHub, GitLab, or BitBucket. If relevant, please provide unique identifier/DOI/version information (e.g., a Git commit ID, branch, release, or tag). If the code and workflow are provided together, this section may be omitted, with information provided in the "Location" section below.
 -->
 
-###  Reproducibility workflow
+
 
 <!--
+###  Reproducibility workflow
 The materials provided should provide a straightforward way for reviewers and readers to reproduce analyses with as few steps as possible. 
+### Workflow
 -->
 
-### Workflow
+
 
 #### Instructions
 

@@ -178,9 +178,9 @@ OPTIONAL: By default, submitted code will be published on the JASA GitHub reposi
 -->
 
 
-
-<!--
 ###  Reproducibility workflow
+<!--
+
 The materials provided should provide a straightforward way for reviewers and readers to reproduce analyses with as few steps as possible. 
 ### Workflow
 -->

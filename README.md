@@ -204,8 +204,9 @@ Describe how to use the materials provided to reproduce analyses in the manuscri
 OPTIONAL: Additional documentation provided (e.g., R package vignettes, demos or other examples) that show how to use the provided code/software in other settings.
 -->
 
-# Notes (optional)
+
 
 <!--
+# Notes (optional)
 OPTIONAL: Any other relevant information not covered on this form. If reproducibility materials are not publicly available at the time of submission, please provide information here on how the reviewers can view the materials.
 -->

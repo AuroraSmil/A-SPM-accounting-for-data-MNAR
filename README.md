@@ -69,7 +69,6 @@ Therefore we provide synthetic data with similar properties containing the same 
 However, the results will not be identical to those produced on the actual data. 
 
 Still, we find it of scientific interest to explore how the models used in this work on real data can improve our understanding of blood pressure and make good predictive models for this condition. 
-This work focuses on a case study with a predictive model for systolic blood pressure (BP) using data from a longitudinal population-based health survey, the Trøndelag Health (HUNT) Study. Elevated BP increases the risk of developing diseases related to the brain, heart, blood vessels, and kidney. This medical condition affects more than 1.1 billion people. It accounts for over 10.8 million deaths per year, surpassing smoking as the leading preventable cause of death for middle-aged and older adults worldwide. Early detection, prevention, and treatment of elevated BP are of high priority in public health strategies. Thus, obtaining unbiased, accurate models for predicting future BP is of great interest in medical research. Indeed, this work is motivated by longitudinal population-based health surveys in medical research and clinical observational studies with a follow-up design and is inspired by a multidisciplinary collaboration on the epidemiology and etiology of elevated BP using data from the HUNT Study.
 
 #### Description
 

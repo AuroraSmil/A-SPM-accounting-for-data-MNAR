@@ -54,6 +54,17 @@ create_sim_data <- function(n= 1000){
     age_sim_vec[index]<- age_sim_vec_new
     min_age <- min(age_sim_vec)
   }
+  max_age <- max(age_sim_vec)
+  while (max_age > 105){
+    index <- which(age_sim_vec >105)
+    n_new <- length(index)
+    #split = rbinom(n_new, 1, p)
+    #age_sim_vec_new = c(rnorm(n= sum(split), mean = mean_age_l, sd = std_age_l), rnorm(n= n_new-sum(split), mean = mean_age_u, sd= std_age_u))
+    age_sim_vec_new<- rnorm(n= n_new, mean = mean_age_u, sd = std_age_u)
+    age_sim_vec[index]<- age_sim_vec_new
+    max_age <- max(age_sim_vec)
+  }
+  
   
   
   fake_data[, age_2_original_scale := age_sim_vec]
@@ -115,4 +126,4 @@ create_sim_data <- function(n= 1000){
 }
 
 
-create_sim_data(10)
+#create_sim_data(1000)

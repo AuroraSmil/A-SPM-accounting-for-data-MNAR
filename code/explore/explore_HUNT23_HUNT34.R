@@ -23,13 +23,13 @@ ylim_u = 0.7
 
 # Compare missing and pressent participants---- 
 
-q_bp_2 <- smooth_density_compare_missing(data_HUNT23, "bp_2_corr", "$BP_2$", ylim_l, ylim_u)
-q_age_2 <- smooth_density_compare_missing(data_HUNT23, "age_2", "$Age_2$", ylim_l, ylim_u)
-q_bmi_2 <- smooth_density_compare_missing(data_HUNT23, "bmi_2", "$BMI_2$", ylim_l, ylim_u)
+q_bp_2 <- smooth_density_compare_missing(data_HUNT23, "bp_2_corr", "$BP_2$", ylim_l, ylim_u, -2.5, 5)
+q_age_2 <- smooth_density_compare_missing(data_HUNT23, "age_2", "$Age_2$", ylim_l, ylim_u, -2, 3)
+q_bmi_2 <- smooth_density_compare_missing(data_HUNT23, "bmi_2", "$BMI_2$", ylim_l, ylim_u, -4,6)
 
-q_bp_3 <- smooth_density_compare_missing(data_HUNT34, "bp_3_corr", "$BP_3$", ylim_l, ylim_u)
-q_age_3 <- smooth_density_compare_missing(data_HUNT34, "age_3", "$Age_3$", ylim_l, ylim_u)
-q_bmi_3 <- smooth_density_compare_missing(data_HUNT34, "bmi_3", "$BMI_3$", ylim_l, ylim_u)
+q_bp_3 <- smooth_density_compare_missing(data_HUNT34, "bp_3_corr", "$BP_3$", ylim_l, ylim_u, -2.5, 5)
+q_age_3 <- smooth_density_compare_missing(data_HUNT34, "age_3", "$Age_3$", ylim_l, ylim_u, -2, 3)
+q_bmi_3 <- smooth_density_compare_missing(data_HUNT34, "bmi_3", "$BMI_3$", ylim_l, ylim_u, -4,6)
 
 mylegend <- g_legend(q_bp_2)
 yleft <- textGrob(expression(paste("Density")), 
@@ -50,10 +50,58 @@ density_comp_missing <- grid.arrange(arrangeGrob(
 
 ggsave("images/density_comp_missing.pdf",
        density_comp_missing,
-       width = 15,
+       width = 16,
        height = 15,
        units = "cm")
 
+density_comp_missing_jasa <- grid.arrange(arrangeGrob(
+  q_bp_2 + theme(legend.position="none"),
+  q_age_2 + theme(legend.position="none"),
+  q_bmi_2 + theme(legend.position="none"),
+  q_bp_3 + theme(legend.position="none"),
+  q_age_3 + theme(legend.position="none"),
+  q_bmi_3 + theme(legend.position="none"),
+  bottom=mylegend,
+  left = yleft,
+  nrow=2, 
+  ncol = 3),
+  heights=c(15, 1))
+ggsave("images/density_comp_missing_jasa.pdf",
+       density_comp_missing_jasa,
+       width = 16,
+       height = 7.5,
+       units = "cm")
+
+
+density_comp_missing_jasa_HUNT2 <- grid.arrange(arrangeGrob(
+  q_bp_2 + theme(legend.position="none"),
+  q_age_2 + theme(legend.position="none"),
+  q_bmi_2 + theme(legend.position="none"),
+  bottom=mylegend,
+  left = yleft,
+  nrow=1, 
+  ncol = 3),
+  heights=c(15, 1))
+ggsave("images/density_comp_missing_jasa_HUNT2.pdf",
+       density_comp_missing_jasa_HUNT2,
+       width = 16,
+       height = 5,
+       units = "cm")
+
+density_comp_missing_jasa_HUNT3 <- grid.arrange(arrangeGrob(
+  q_bp_3 + theme(legend.position="none"),
+  q_age_3 + theme(legend.position="none"),
+  q_bmi_3 + theme(legend.position="none"),
+  bottom=mylegend,
+  left = yleft,
+  nrow=1, 
+  ncol = 3),
+  heights=c(15, 1))
+ggsave("images/density_comp_missing_jasa_HUNT3.pdf",
+       density_comp_missing_jasa_HUNT3,
+       width = 16,
+       height = 5,
+       units = "cm")
 
 formula_bp_3 <- "bp_3_corr~ sex + age_2 + bp_2_corr + bmi_2"
 

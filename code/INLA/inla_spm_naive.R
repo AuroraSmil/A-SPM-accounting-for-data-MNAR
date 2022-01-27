@@ -26,6 +26,9 @@ source("code/INLA/assosiation_effect.R")
 # Set directory for storing the SPM and naive model
 dir <- "/home/aurorach/data_HUNT_aurora/master/"
 # Read data ---- 
+
+#data<- read.csv("code/reproducability_report/sim_data_64385.csv") If using simulated data
+
 data<- readRDS("/home/aurorach/data_HUNT_aurora/master/HUNT23_scaled.RData")
 data_small <- as.data.table(data)#[1:10000])
 n <- nrow(data_small)
@@ -38,15 +41,15 @@ sigma2 = 0.001 #Fixed to a neglectable value
 inla_spm <- run_spm(data, verbose = T, compute_all = TRUE)
 
 
-saveRDS(inla_spm, file = glue::glue{"{dir}spm_inla_HUNT23.RData"})
+saveRDS(inla_spm, file = glue::glue("{dir}spm_inla_HUNT23.RData"))
 summary(inla_spm)
 
 # Run naive -----
 inla_naive_bp <- run_naive_bp(data, verbose = T, compute_all = TRUE)
-saveRDS(inla_naive_bp, file = glue::glue{"{dir}inla_naive_bp.RData"})
+saveRDS(inla_naive_bp, file = glue::glue("{dir}inla_naive_bp.RData"))
 
 inla_naive_m <- run_naive_m(data, verbose = T, compute_all = TRUE)
-saveRDS(inla_naive_m, file = glue::glue{"{dir}inla_naive_m.RData"})
+saveRDS(inla_naive_m, file = glue::glue("{dir}inla_naive_m.RData"))
 
 summary(inla_naive_bp)
 summary(inla_naive_m)

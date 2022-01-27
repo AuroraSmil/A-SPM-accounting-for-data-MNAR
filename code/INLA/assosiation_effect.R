@@ -84,5 +84,10 @@ assosiatoin_effect <- function(dir){
          height = 10,
          units = "cm")
   
+  ggsave("images/assosiation_effect_jasa.pdf",
+         width = 15,
+         height = 7.5,
+         units = "cm")
+  
 }
 

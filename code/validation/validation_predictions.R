@@ -96,13 +96,13 @@ mean(abs(na.omit(predictions_agg_n$mean_bp - predictions_agg_n$bp_corr)))
 
 crps <- crps_func(predictions_bp_spm = predictions_bp_spm, predictions_bp_n = predictions_bp_n, data_val = data_val, n_samples = n_samples)
 crps
-
+write.csv(crps, "results/crps.csv")
 
 ###### BRIER -----
 
 brier <- brier_func(predictions_m_spm = predictions_m_spm, predictions_m_n = predictions_m_n, data_val = data_val)
 brier
-
+write.csv(brier, "results/brier.csv")
 ##### compare grouped by missing#####
 predictions_agg_spm[, model := "SPM posterior predictive mean"]
 predictions_agg_n[, model := "Naive posterior predicitve mean"]
@@ -114,7 +114,7 @@ q <- ggplot(predictions_agg, aes(x = mean_bp, group = model, colour = model, lin
 q <- q + geom_density()
 q <- q + geom_density(aes(x = bp_corr, colour = "Observed", linetype = "Observed"))
 q <- q + scale_color_manual(values = c("#F8766D", "black","#00BFC4"))
-q <- q + xlab(TeX("$BP_4$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "bottom")
+q <- q + xlab(TeX("$\\hat{BP_4}$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "bottom")
 q <- q + facet_wrap(vars(missing_name))
 q
 
@@ -125,6 +125,11 @@ ggsave("images/validation_pred_bp_smooth.pdf",
        height = 10,
        units = "cm")
 
+ggsave("images/validation_pred_bp_smooth_jasa.pdf",
+       width = 16,
+       height = 6,
+       units = "cm")
+
 predictions_agg_mean <- predictions_agg[, .(mean_mean_bp = mean(mean_bp), 
                                             mean_mean_m = mean(mean_m)),
                                         keyby  = .(missing, missing_name)]
@@ -133,7 +138,7 @@ predictions_agg_mean <- predictions_agg[, .(mean_mean_bp = mean(mean_bp),
 q <- ggplot(predictions_agg, aes(x = mean_m, group = model, colour = model, linetype = model))
 q <- q + geom_density()
 #q <- q + xlab("Probability of dropping out") 
-q <- q + xlab(TeX("p_4")) 
+q <- q + xlab(TeX("\\hat{p}_4")) 
 q <- q + ylab("Density") + theme(legend.title = element_blank(), legend.position = "bottom")
 q <- q + scale_color_manual(values = c("#F8766D","#00BFC4", "black"))
 q <- q+ facet_wrap(vars(missing_name))
@@ -141,6 +146,10 @@ q
 ggsave("images/validation_pred_missingness_smooth.pdf",
        width = 17,
        height = 10,
+       units = "cm")
+ggsave("images/validation_pred_missingness_smooth_jasa.pdf",
+       width = 16,
+       height = 6,
        units = "cm")
 
 
@@ -204,6 +213,8 @@ fake_predictions_median <- fake_predictions_long[, .(q500_bp = q500(bp_pred),
 convert_id_to_text <- function(id){
   return(glue::glue("Id = {id}"))
 }
+
+
 fake_predictions_median[, name_id := convert_id_to_text(id)]
 fake_predictions_median
 
@@ -211,52 +222,77 @@ fake_predictions_median
 
 fake_predictions_long[, name_id:= convert_id_to_text(id)]
 
+variable_names <- c(
+  `Id = 1` = "Id = 1, young, low BMI, and low blood pressure.",
+  `Id = 2` = "Id = 2, middle-aged, average BMI, and average blood pressure.",
+  `Id = 3` = "Id = 3, old, high BMI and, high blood pressure."  
+)
+variable_labeller <- function(variable,value){
+  return(hospital_names[value])
+}
+
+
 q <- ggplot(fake_predictions_long, aes(x = bp_pred, group = model, colour = model, linetype = model))
 q <- q + geom_density()
 q <- q + geom_vline(data = fake_predictions_median, aes(xintercept = mean_bp, colour = model, group = model, linetype = model))
-q <- q + xlab(TeX("Precicted $BP_F$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "bottom")
-q + facet_wrap(vars(name_id), ncol = 1)
-
+q <- q + xlab(TeX("$\\hat{BP_F}$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "bottom")
+q <- q + ylim(0,0.6)
+#q + facet_wrap(vars(name_id), ncol = 1)
+q + facet_wrap(vars(name_id), ncol = 1,labeller = labeller(name_id = variable_names))
 
 ggsave("images/validation_individual_examples_bp.pdf",
-       width = 17,
+       width = 16,
+       height = 10,
+       units = "cm")
+ggsave("images/validation_individual_examples_bp_jasa.pdf",
+       width = 16,
        height = 10,
        units = "cm")
 
 q <- ggplot(fake_predictions_long, aes(x = m_pred, group = model, colour = model, linetype = model))
 q <- q + geom_density()
 q <- q + geom_vline(data = fake_predictions_median, aes(xintercept = mean_m, colour = model, group = model))
-q <- q + xlab(TeX("Precicted $p$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "none")#, legend.position = "bottom")
+q <- q + xlab(TeX("$\\hat{p}$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "none")#, legend.position = "bottom")
 #q <- q + scale_color_manual(values = "#F8766D")+xlim(0,1)
-q + facet_wrap(vars(name_id), ncol = 1)
+q + facet_wrap(vars(name_id), ncol = 1,labeller = labeller(name_id = variable_names))
 
-
+ggsave("images/validation_individual_examples_m_bp_spm_jasa.pdf",
+       width = 16,
+       height = 8,
+       units = "cm")
 
 
 q <- ggplot(fake_predictions_long[model == "SPM"], aes(x = m_pred, group = model, colour = model, linetype = model))
 q <- q + geom_density()
 q <- q + geom_vline(data = fake_predictions_median[model == "SPM"], aes(xintercept = mean_m, colour = model, group = model))
-q <- q + xlab(TeX("Precicted $p$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "none")#, legend.position = "bottom")
+q <- q + xlab(TeX("$\\hat{p}$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "none")#, legend.position = "bottom")
 q <- q + scale_color_manual(values = "#00BFC4") +xlim(0,1)
-q + facet_wrap(vars(name_id), ncol = 1)
+q + facet_wrap(vars(name_id), ncol = 1,labeller = labeller(name_id = variable_names))
 ggsave("images/validation_individual_examples_m_spm.pdf",
        width = 17,
        height = 10,
+       units = "cm")
+ggsave("images/validation_individual_examples_m_spm_jasa.pdf",
+       width = 17,
+       height = 8,
        units = "cm")
 
 q <- ggplot(fake_predictions_long[model == "Naive"], aes(x = m_pred, group = model, colour = model, linetype = model))
 q <- q + geom_density()
 q <- q + geom_vline(data = fake_predictions_median[model == "Naive"], aes(xintercept = mean_m, colour = model, group = model))
-q <- q + xlab(TeX("Precicted $p$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "none")#, legend.position = "bottom")
+q <- q + xlab(TeX("$\\hat{p}$")) + ylab("Density") + theme(legend.title = element_blank(), legend.position = "none")#, legend.position = "bottom")
 q <- q + scale_color_manual(values = "#F8766D")+xlim(0,1)
-q + facet_wrap(vars(name_id), ncol = 1)
+q + facet_wrap(vars(name_id), ncol = 1,labeller = labeller(name_id = variable_names))
 
 
 ggsave("images/validation_individual_examples_m_naive.pdf",
        width = 17,
        height = 10,
        units = "cm")
-
+ggsave("images/validation_individual_examples_m_naive_jasa.pdf",
+       width = 17,
+       height = 8,
+       units = "cm")
 
 ###### Compare diff, reiduals, bias ########
 nrow(data_val[missing==1])/nrow(data_val)

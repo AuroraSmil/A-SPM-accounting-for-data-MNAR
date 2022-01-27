@@ -20,6 +20,7 @@ library(readr)
 library(corrplot)
 library(grid)
 library(gridtext)
+library(mgcv)
 
 source("code/explore/explore_functions.R")
 source("code/simulation_study/model_functions.R")

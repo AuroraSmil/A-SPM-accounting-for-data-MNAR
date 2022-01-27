@@ -1,4 +1,4 @@
-# A shared parameter model accounting for dropout not at random in a predictive modelfor systolic blood pressure using data from The HUNT Study
+# A shared parameter model accounting for dropout not at random in a predictive model for systolic blood pressure using data from The HUNT Study
 
 ## Author Contributions Checklist Form
 <!--HOW TO COMPLETE THIS FORM:-->
@@ -156,11 +156,24 @@ R version 4.0.4 (2021-02-15)
 <!--
 Include version numbers (e.g., version numbers for any R or Python packages used)
 -->
-glue_1.4.2          lubridate_1.7.9.2   tikzDevice_0.12.3.1 latex2exp_0.4.0    
-data.table_1.13.6   forcats_0.5.1       stringr_1.4.0       dplyr_1.0.4        
-purrr_0.3.4         readr_1.4.0         tidyr_1.1.2         tibble_3.0.6       
-ggplot2_3.3.3       tidyverse_1.3.0     brinla_0.1.0        INLA_21.02.23      
-sp_1.4-5            foreach_1.5.1       Matrix_1.3-2      
+
+attached base packages:
+stats4    parallel  grid      stats     graphics  grDevices utils     datasets 
+methods   base
+
+other attached packages:
+corrplot_0.92       fGarch_3042.83.2    fBasics_3042.89.1   timeSeries_3062.100
+timeDate_3043.102   sn_1.6-2            Hmisc_4.5-0         Formula_1.2-4      
+survival_3.2-7      lattice_0.20-41     lubridate_1.7.9.2   mgcv_1.8-33        
+nlme_3.1-152        scoringRules_1.0.1  DescTools_0.99.41   glue_1.4.2         
+forcats_0.5.1       stringr_1.4.0       dplyr_1.0.4         purrr_0.3.4        
+readr_1.4.0         tidyr_1.1.2         tibble_3.0.6        tidyverse_1.3.0    
+brinla_0.1.0        INLA_21.02.23       sp_1.4-5            foreach_1.5.1      
+Matrix_1.3-2        gridtext_0.1.4      tikzDevice_0.12.3.1 latex2exp_0.4.0    
+ggplot2_3.3.3       gridExtra_2.3       cowplot_1.1.1       foreign_0.8-81     
+data.table_1.13.6  
+
+
 #### Supporting system/hardware requirements (optional)
 
 <!--
@@ -170,22 +183,19 @@ OPTIONAL: System/hardware requirements including operating system with version n
 Ubuntu 18.04.6 LTS
 
 
-
+### Additional information (optional)
 
 <!--
-### Additional information (optional)
 OPTIONAL: By default, submitted code will be published on the JASA GitHub repository (http://github.com/JASA-ACS) as well as in the supplementary material. Authors are encouraged to also make their code available in a public code repository, such as on GitHub, GitLab, or BitBucket. If relevant, please provide unique identifier/DOI/version information (e.g., a Git commit ID, branch, release, or tag). If the code and workflow are provided together, this section may be omitted, with information provided in the "Location" section below.
 -->
 
-
 ###  Reproducibility workflow
-<!--
 
+<!--
 The materials provided should provide a straightforward way for reviewers and readers to reproduce analyses with as few steps as possible. 
-### Workflow
 -->
 
-
+### Workflow
 
 #### Instructions
 
@@ -207,9 +217,8 @@ Describe how to use the materials provided to reproduce analyses in the manuscri
 OPTIONAL: Additional documentation provided (e.g., R package vignettes, demos or other examples) that show how to use the provided code/software in other settings.
 -->
 
-
+# Notes (optional)
 
 <!--
-# Notes (optional)
 OPTIONAL: Any other relevant information not covered on this form. If reproducibility materials are not publicly available at the time of submission, please provide information here on how the reviewers can view the materials.
 -->

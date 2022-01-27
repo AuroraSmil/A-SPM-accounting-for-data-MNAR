@@ -59,6 +59,11 @@ ggsave("images/diff_crps.pdf",
        width = 17,
        height = 10,
        units = "cm")
+ggsave("images/diff_crps_jasa.pdf",
+       q,
+       width = 8,
+       height = 7,
+       units = "cm")
 
 q <- ggplot(data = brier, aes(group = as.factor(missing), colour = as.factor(missing), linetype = as.factor(missing)))
 q <- q + geom_density(aes(x = brier_spm_minus_n))
@@ -72,6 +77,11 @@ ggsave("images/diff_brier.pdf",
        q,
        width = 17,
        height = 10,
+       units = "cm")
+ggsave("images/diff_brier_jasa.pdf",
+       q,
+       width = 8,
+       height = 7,
        units = "cm")
 
 write.csv(crps_agg, file = glue("{dir}/{n_sim}_crps_agg_param_est_spm_mnar"), row.names = FALSE)

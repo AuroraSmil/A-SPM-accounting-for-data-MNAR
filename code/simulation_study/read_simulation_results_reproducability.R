@@ -37,6 +37,12 @@ ggsave("images/simulation_study_results_MNAR_spm_est_100.pdf",
        width = 15,
        height = 20,
        units = "cm")
+q_spm_est_mnar_jasa<- plot_sim_results(spm_est_mnar$simulation_results, spm_est_mnar$simulation_results_sumary, ncols = 4 )
+ggsave("images/simulation_study_results_MNAR_spm_est_100_jasa.pdf",
+       q_spm_est_mnar_jasa,
+       width = 20,
+       height = 10,
+       units = "cm")
 
 setnames(spm_est_mnar$simulation_results_sumary, 
          c("true_value", "mean_spm", "bias_spm", "coverage_spm", 
@@ -75,6 +81,12 @@ ggsave("images/simulation_study_results_MAR_spm_est_100.pdf",
        q_spm_est_mar,
        width = 15,
        height = 20,
+       units = "cm")
+q_spm_est_mar_jasa<- plot_sim_results(spm_est_mar$simulation_results, spm_est_mar$simulation_results_sumary , ncols = 4)
+ggsave("images/simulation_study_results_MAR_spm_est_100_jasa.pdf",
+       q_spm_est_mar_jasa,
+       width = 21,
+       height = 11,
        units = "cm")
 
 setnames(spm_est_mar$simulation_results_sumary, 
@@ -120,7 +132,12 @@ ggsave("images/simulation_study_results_MNAR_naive_est_100.pdf",
        width = 15,
        height = 20,
        units = "cm")
-
+q_naive_est_mnar_jasa<- plot_sim_results(naive_est_mnar$simulation_results, naive_est_mnar$simulation_results_sumary , ncols = 4)
+ggsave("images/simulation_study_results_MNAR_naive_est_100_jasa.pdf",
+       q_naive_est_mnar_jasa,
+       width = 20,
+       height = 10,
+       units = "cm")
 setnames(naive_est_mnar$simulation_results_sumary, 
          c("true_value", "mean_spm", "bias_spm", "coverage_spm", 
            "mean_naive", "bias_naive", "coverage_naive", "diff_bias"),
@@ -162,7 +179,12 @@ ggsave("images/simulation_study_results_MAR_naive_est_100.pdf",
        width = 15,
        height = 20,
        units = "cm")
-
+q_naive_est_mar_jasa<- plot_sim_results(naive_est_mar$simulation_results, naive_est_mar$simulation_results_sumary , ncols = 4)
+ggsave("images/simulation_study_results_MAR_naive_est_100_jasa.pdf",
+       q_naive_est_mar_jasa,
+       width = 20,
+       height = 10,
+       units = "cm")
 setnames(naive_est_mar$simulation_results_sumary, 
          c("true_value", "mean_spm", "bias_spm", "coverage_spm", 
            "mean_naive", "bias_naive", "coverage_naive", "diff_bias"),

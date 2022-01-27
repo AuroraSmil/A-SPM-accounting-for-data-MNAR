@@ -1,6 +1,6 @@
 # Explore functions
 
-histogram_compare_missing = function(data, variable, title, ylim_l, ylim_u){
+histogram_compare_missing = function(data, variable, title, ylim_l, ylim_u, xlim_l, xlim_u){
   # returns a histogram comparing present and drop-out participants
   # data: contains the hunt cohort of interest
   # variable: variable we want to explore
@@ -15,11 +15,11 @@ histogram_compare_missing = function(data, variable, title, ylim_l, ylim_u){
   q_1 <- q_1 + theme(legend.title = element_blank(), legend.position = "bottom")#, axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) 
   q_1 <- q_1 + scale_fill_discrete(labels = c( "Pressent", "Missing")) 
   q_1 <- q_1 + scale_colour_discrete(guide = 'none')
-  q_1 <- q_1 + xlab(unname(unname(TeX(c(title))))) + ylab("Density") + ylim(ylim_l, ylim_u)
+  q_1 <- q_1 + xlab(unname(unname(TeX(c(title))))) + xlim(xlim_l, xlim_u) + ylab("Density") + ylim(ylim_l, ylim_u)
   return(q_1)
 }
 
-smooth_density_compare_missing = function(data, variable, title, ylim_l, ylim_u){
+smooth_density_compare_missing = function(data, variable, title, ylim_l, ylim_u, xlim_l, xlim_u){
   # returns a smoothed density plot comparing present and drop-out participants
   # data: contains the hunt cohort of interest
   # variable: variable we want to explore
@@ -33,7 +33,7 @@ smooth_density_compare_missing = function(data, variable, title, ylim_l, ylim_u)
   q_1 <- q_1 + scale_colour_discrete(labels = c( "Pressent", "Missing")) 
   q_1 <- q_1 + labs(colour  = "Guide name", linetype = "Guide name")
   q_1 <- q_1 + scale_linetype_manual(labels = c( "Pressent", "Missing"), values = c("solid","dashed"))
-  q_1 <- q_1 + xlab(unname(unname(TeX(c(title))))) + ylab(element_blank()) + ylim(ylim_l, ylim_u)
+  q_1 <- q_1 + xlab(unname(unname(TeX(c(title))))) + xlim(xlim_l, xlim_u)+ ylab(element_blank()) + ylim(ylim_l, ylim_u)
   return(q_1)
 }
 

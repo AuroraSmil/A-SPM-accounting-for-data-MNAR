@@ -140,6 +140,12 @@ ggsave(glue::glue("images/non_lin_effects_participants_without_ci_{sample_size}.
        height = 20,
        units = "cm")
 
+ggsave(glue::glue("images/non_lin_effects_participants_without_ci_{sample_size}_jasa.pdf"),
+       q,
+       width = 16,
+       height = 10,
+       units = "cm")
+
 q <- ggplot(data = data_random_age_missing, aes(x = ID))
 q <- q + geom_line(aes(y = mean, colour = "age_missing", linetype = "age_missing"))
 q <- q + geom_ribbon(aes(ymin= `0.025quant`, ymax = `0.975quant`, fill = "age_missing"), alpha = 0.5)
@@ -172,6 +178,12 @@ ggsave(glue::glue("images/non_lin_effects_participants_with_ci_{sample_size}.pdf
        q,
        width = 15,
        height = 20,
+       units = "cm")
+
+ggsave(glue::glue("images/non_lin_effects_participants_with_ci_{sample_size}_jasa.pdf"),
+       q,
+       width = 16,
+       height = 10,
        units = "cm")
 end_time <- Sys.time()
 

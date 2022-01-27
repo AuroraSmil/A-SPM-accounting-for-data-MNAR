@@ -195,10 +195,36 @@ compare_spm_naive_estimates <- function(dir, cohort_number = 2){
          width = 15,
          height = 20,
          units = "cm")
+  post_dens_coef_jasa <- grid.arrange(arrangeGrob(plots_naive_spm$alpha_0 + theme(legend.position="none"),
+                                             plots_naive_spm$y_BP1 + theme(legend.position="none"),
+                                             plots_naive_spm$y_BMI + theme(legend.position="none"),
+                                             plots_naive_spm$y_AGE + theme(legend.position="none"),
+                                             plots_naive_spm$y_SEX + theme(legend.position="none"),
+                                             plots_naive_spm$sigma_eps + theme(legend.position="none"),
+                                             plots_naive_spm$c + theme(legend.position="none"),
+                                             plots_naive_spm$beta_0 + theme(legend.position="none"),
+                                             plots_naive_spm$m_BP1 + theme(legend.position="none"),
+                                             plots_naive_spm$m_BMI + theme(legend.position="none"),
+                                             plots_naive_spm$m_SEX + theme(legend.position="none"),
+                                             plots_naive_spm$sigma_age + theme(legend.position="none"), 
+                                             ncol= 3),
+                                 nrow = 2, 
+                                 mylegend,
+                                 heights=c(12, 1))
+  ggsave(glue::glue("images/post_dens_coef_scaled_hunt{cohort_number}_param_est_jasa.pdf"),
+         post_dens_coef_jasa,
+         width = 17,
+         height = 12,
+         units = "cm")
   ggsave(glue::glue("images/age_effect_hunt{cohort_number}.pdf"),
          q_age,
-         width = 15,
+         width = 16,
          height = 7.5,
+         units = "cm")
+  ggsave(glue::glue("images/age_effect_hunt{cohort_number}_jasa.pdf"),
+         q_age,
+         width = 16,
+         height = 5,
          units = "cm")
   
   # Store summary results ----

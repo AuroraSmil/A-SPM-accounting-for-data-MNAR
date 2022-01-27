@@ -43,6 +43,12 @@ ggsave("images/validation_mnar_naive_param.pdf",
        height = 10,
        units = "cm")
 
+ggsave("images/validation_mnar_naive_param_jasa.pdf",
+       q,
+       width = 7.5,
+       height = 6,
+       units = "cm")
+
 # q <- ggplot(data = res_data )
 # q <- q + geom_density(aes(x = diff))
 # q <- q + xlab(TeX("(\\bar{|True $BP_F$ - predicted $\\bar{BP_F|m}$|})-\\bar{(|True $BP_F$ - predicted $\\bar{BP_F}$|})")) + xlim(-0.0017,0.0005)
@@ -79,7 +85,11 @@ ggsave("images/validation_mnar_spm_param.pdf",
        width = 17,
        height = 10,
        units = "cm")
-
+ggsave("images/validation_mnar_spm_param_jasa.pdf",
+       q,
+       width = 7.5,
+       height = 6,
+       units = "cm")
 # q <- ggplot(data = res_data_spm )
 # q <- q + geom_density(aes(x = diff))
 # q <- q + xlab(TeX("(\\bar{|True $BP_F$ - predicted $\\bar{BP_F|m}$|})-\\bar{(|True $BP_F$ - predicted $\\bar{BP_F}$|})")) + xlim(-0.0017,0.0005)
@@ -112,3 +122,8 @@ ggsave("images/validation_mnar_diff_param.pdf",
        height = 10,
        units = "cm")
 
+ggsave("images/validation_mnar_diff_param_jasa.pdf",
+       q,
+       width = 16,
+       height = 6,
+       units = "cm")

@@ -192,7 +192,7 @@ create_sim_data <- function(spm_param, spm_coverage, naive_param, naive_coverage
   return(retval)
 }
 
-plot_sim_results <- function(data, data_summary){
+plot_sim_results <- function(data, data_summary, ncols = 3){
   variable_names <- c(
     `a_0` = "alpha[0]",
     `a_bp` = "alpha[BP]",
@@ -214,10 +214,13 @@ plot_sim_results <- function(data, data_summary){
   q <- q + geom_vline(data = data_summary, aes(xintercept = true_value, color = "True", linetype = "True"))
   q <- q + geom_vline(data = data_summary, aes(xintercept = mean_spm, color = "SPM", linetype = "SPM"))
   q <- q + geom_vline(data = data_summary, aes(xintercept = mean_naive, color = "Naive", linetype = "Naive"))
-  q <- q + labs(color  = "Guide name", linetype = "Guide name") + ylab("Density") + xlab(element_blank())
+  q <- q + labs(color  = "Guide name", linetype = "Guide name") 
+  q <- q + ylab("Density") 
+  #q <- q + ylab(element_blank()) 
+  q <- q + xlab(element_blank())
   q <- q + theme(legend.title = element_blank(), legend.position = "bottom")
   q <- q + scale_color_manual(values = c("#F8766D","#00BFC4", "black"))
-  return(q + facet_wrap(~variable, ncol = 3, scales = "free", 
+  return(q + facet_wrap(~variable, ncol = ncols, scales = "free", 
                         labeller = labeller(variable = as_labeller(variable_names, label_parsed))))
   
 }
